@@ -23,7 +23,11 @@ components of the transformer model, rather my goal is to give you an overview o
 truly makes the transformer architecture amazing, while providing additional resources
 for anyone interested in learning further details.
 
-[![Image of transformer block](https://google.com)](https://towardsdatascience.com/wp-content/uploads/2024/11/00n5M-lTWbbuVB0ug.png)
+<br>
+
+<img src="../assets/images/transformers/transformer_block.webp" alt="My Image" width="300" style="display: block; margin: 0 auto;"/>
+
+<br>
 
 The transformer model consists of the following main components:
 
@@ -66,6 +70,12 @@ to the proceeding layers and so on, until the last layer comes out with an outpu
 highest score will be picked, however this will lead to deterministic results
 to the same input everytime. As a result, different techniques have been developed
 to avoid picking the same word everytime to provide a different response everytime.
+
+<br>
+
+<img src="../assets/images/neural_networks/simple_nn_ex.png" alt="Neural Network" width="500" style="display: block; margin: 0 auto;"/>
+
+<br>
 
 ## Normalization Layers
 
