@@ -1,0 +1,25 @@
+---
+import { getCollection, render } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+
+export async function getStaticPaths() {
+  // Only generate draft pages in dev mode — never in production builds
+  if (import.meta.env.PROD) return [];
+
+  const drafts = await getCollection('drafts');
+  return drafts.map((draft) => ({
+    params: { id: draft.id },
+    props: { draft },
+  }));
+}
+
+const { draft } = Astro.props;
+const { Content } = await render(draft);
+---
+
+<PostLayout frontmatter={draft.data}>
+  <div style="background: #fff3cd; border: 1px solid #ffc107; padding: 0.5rem 1rem; border-radius: 4px; margin-bottom: 1.5rem; font-size: 0.85rem;">
+    ⚠️ <strong>Draft</strong> — this page is not published
+  </div>
+  <Content />
+</PostLayout>

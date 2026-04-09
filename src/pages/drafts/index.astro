@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+if (import.meta.env.PROD) {
+  return Astro.redirect('/');
+}
+
+const drafts = (await getCollection('drafts')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<BaseLayout title="Drafts">
+  <h1>Drafts <span style="font-size: 0.7em; color: #aaa;">(local only)</span></h1>
+  <div class="post-list">
+    {
+      drafts.map((draft) => (
+        <div class="post-item">
+          <a href={`/drafts/${draft.id}`} class="post-title">{draft.data.title}</a>
+          <div class="post-subtitle">
+            <span>{new Date(draft.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</BaseLayout>
