@@ -46,11 +46,11 @@ terminology:
   the words the LLM will be trained on. For example: GPT3 contains a 100,261 token
   vocabulary.
 
-<br>
+
 
 <img src="../assets/images/transformers/transformer_block.webp" alt="My Image" width="300" style="display: block; margin: 0 auto;"/>
 
-<br>
+
 
 It can be overwhelming seeing the transformer structure for the first time, rest assured
 we will not be diving deep into every component, however it is still useful to have an
@@ -75,7 +75,7 @@ to keep track of:
 - There will be some additional details added at the bottom of the page, which applies
   as a summary, feel free to read through it.
 
-  <br>
+  
 
 ## Encoder
 
@@ -83,7 +83,6 @@ The encoder is responsible for creating meaningful numeric representation of inp
 The details of how this is done is not important for now, just know that through
 some mathematical transformations, all words can be represented with a single long vector.
 
-<br>
 
 ## Feed Forward Neural Network
 
@@ -102,17 +101,14 @@ to every neuron at the forwarding layer:
 3. **Output layer:** produces the final output — a probability score for every word
    in the predefined vocabulary.
 
-<br>
 
 <img src="../assets/images/neural_networks/simple_nn_ex.png" alt="Neural Network" width="500" style="display: block; margin: 0 auto;"/>
 
-<br>
 
 Each layer of the neural network "fires" to the proceeding layers and so on, until the last layer comes out with an output. The word with the highest score will be picked, however this will lead to deterministic results to the same input everytime. As a result, different techniques have been developed
 to avoid picking the same word everytime to provide a different response everytime. Such
 as randomly picking among the top k highest probability scores.
 
-<br>
 
 ## Normalization Layers
 
@@ -123,7 +119,7 @@ does not entirely reset the value, but rather it performs a mathematical functio
 keeps the value within a certain range no matter how large or small it originally was.
 This helps us avoid the problem of overly large/small numbers.
 
-<br>
+<br />
 
 ## Multi-Head Attention Block
 
@@ -148,24 +144,24 @@ relative to the other words in that sentence, will actually give us a form of
 (softmax) and will produce **attention weights**, a vector of percentages representing
 how much should each word "attend" to every other word.
 
-<br>
+<br />
 
 ## Decoder
 
 Somewhat similar to the encoder, the decoder uses the encoder's vector representations
 then **autoregressively** generates one word (token) at a time.
 
-<br>
+<br />
 <img src="../assets/images/transformers/encoder_decoder_demo.png" alt="Encoder-decoder demonstration" width="700" style="display: block; margin: 0 auto;"/>
 
-<br>
+<br />
 
 The image shows an example of the encoder taking in some user input "_Are you free tomorrow?_",
 and purely through the mechanism of the transformer block and neural network. The LLM
 is capable of identifying what is the most appropriate response, almost seemingly
 like it understands the question.
 
-<br>
+<br />
 
 ## Summary
 
@@ -183,7 +179,7 @@ it is remarkable the results and applications that were made capable by it.
 Yes, even your favourite image generation AIs use the transformer model at its core,
 they just apply different strategies to make it work.
 
-<br>
+<br />
 
 ## References
 
