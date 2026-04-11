@@ -1,5 +1,5 @@
 ---
-title: "Paying Attention: Decoding How AI Listens"
+title: "Paying Attention: An Overview of How AI Listens"
 date: "2026-04-07"
 author: "M. Fadel"
 description: "A high-level introduction to how transformers work"
@@ -17,22 +17,23 @@ tags:
 # Introduction
 
 The transformer model was first introduced in a 2017 paper titled "Attention Is All You Need"
-(https://arxiv.org/abs/1706.03762) published by Google. Little did the researchers know at the time, this paper would
+(1) published by Google. Little did the researchers know at the time, this paper would
 soon become one of the most cited papers of the 21st century and would provide the
 basis behind all major AI models today.
 
 Prior to the development of the transformer model, there has been many architectural
-models built in hopes of best achieving true artificial intelligence. In this blog,
-I am not aiming to give full technical and mathematical understanding of the underlying
-components of the transformer model, rather my goal is to give you an overview of what
-truly makes the transformer architecture amazing, while providing additional resources
-for anyone interested in learning further.
+models built in hopes of best achieving true artificial intelligence, better known as AGI
+or Artificial General Intelligence. I am not aiming to give full technical and
+mathematical understanding of the underlying components of the transformer model,
+rather my goal is to give you an overview of what truly makes the transformer architecture
+amazing, while providing additional resources for anyone interested in learning further.
 
 Although not necessary but it can be useful to be briefly aware of the following
 terminology:
 
 - **Large Language Models (LLMs) :** think of these as the "brain" behind the AI, it is
-  where all the learning and computations is done before producing a result.
+  where all the learning and computations is done before producing a result. Under the
+  hood, it is simply a series of neural networks.
 
 - **Tokens :** are the standard unit for LLMs, but for the sake of simplicity, I will
   simply refer to them as one token = one "word", while in reality 1 token is roughly
@@ -41,16 +42,30 @@ terminology:
 - **Parameters / Weights :** is the numbers that the LLM tries to optimize through a
   process called "pre-training".
 
-- **Activation Function :**
+- **Activation Function :** is a function that is applied at the end of every neuron,
+  there are many kinds of activation functions but they all serve the purpose of defining
+  whether a neuron's "signal" should pass on to the next layer of neurons. This is
+  important for defining the important set of neurons needed for a particular wanted
+  behaviour. This can be understood in the real world context as well, certain neural
+  pathways in our brain fire for particular skillsets, with artificial neurons, the
+  activation function is trying to figure out what is that pathway and how to amplify
+  its signal.
+
 - **LLM Vocabulary:** this is a predefined "vocabulary" of words that contains all
   the words the LLM will be trained on. For example: GPT3 contains a 100,261 token
-  vocabulary.
+  vocabulary. This means that GPT 3 could recognise 100,261 words, similar to how
+  language vocabulary works.
 
+  <br />
 
+<img
+  src="../assets/images/transformers/transformer_block.webp"
+  alt="My Image"
+  width="300"
+  style="display: block; margin: 0 auto;"
+/>
 
-<img src="../assets/images/transformers/transformer_block.webp" alt="My Image" width="300" style="display: block; margin: 0 auto;"/>
-
-
+<br />
 
 It can be overwhelming seeing the transformer structure for the first time, rest assured
 we will not be diving deep into every component, however it is still useful to have an
@@ -64,25 +79,13 @@ The transformer model consists of the following main components:
 - Layer Normalization
 - Decoder
 
-Before we start explaining what each component does, there are a few important points
-to keep track of:
-
-- Instead of thinking of the transformer as some form of magic that gives
-  artificial intelligence it's "thinking" capacity, it would be a lot easier to move
-  forward thinking of it as a "next-word" predictor. This will start to make sense the deeper
-  we dive into the details.
-
-- There will be some additional details added at the bottom of the page, which applies
-  as a summary, feel free to read through it.
-
-  
-
 ## Encoder
 
 The encoder is responsible for creating meaningful numeric representation of input.
 The details of how this is done is not important for now, just know that through
 some mathematical transformations, all words can be represented with a single long vector.
 
+<br />
 
 ## Feed Forward Neural Network
 
@@ -101,14 +104,20 @@ to every neuron at the forwarding layer:
 3. **Output layer:** produces the final output — a probability score for every word
    in the predefined vocabulary.
 
+<img
+  src="../assets/images/neural_networks/simple_nn_ex.png"
+  alt="Neural Network"
+  width="500"
+  style="display: block; margin: 0 auto;"
+/>
 
-<img src="../assets/images/neural_networks/simple_nn_ex.png" alt="Neural Network" width="500" style="display: block; margin: 0 auto;"/>
+Each layer of the neural network "fires" to the proceeding layers and so on, until
+the last layer comes out with an output. The word with the highest score will be picked,
+however this will lead to deterministic results to the same input everytime. As a result,
+different techniques have been developed to avoid picking the same word everytime
+to provide a different response everytime. Such as randomly picking among the top k highest probability scores.
 
-
-Each layer of the neural network "fires" to the proceeding layers and so on, until the last layer comes out with an output. The word with the highest score will be picked, however this will lead to deterministic results to the same input everytime. As a result, different techniques have been developed
-to avoid picking the same word everytime to provide a different response everytime. Such
-as randomly picking among the top k highest probability scores.
-
+<br />
 
 ## Normalization Layers
 
@@ -152,7 +161,12 @@ Somewhat similar to the encoder, the decoder uses the encoder's vector represent
 then **autoregressively** generates one word (token) at a time.
 
 <br />
-<img src="../assets/images/transformers/encoder_decoder_demo.png" alt="Encoder-decoder demonstration" width="700" style="display: block; margin: 0 auto;"/>
+<img
+  src="../assets/images/transformers/encoder_decoder_demo.png"
+  alt="Encoder-decoder demonstration"
+  width="700"
+  style="display: block; margin: 0 auto;"
+/>
 
 <br />
 
@@ -167,7 +181,7 @@ like it understands the question.
 
 To sum it up, we realise that "_artificial intelligence_" is nothing more than an
 incredibly complex next word generator. It takes your input, analyzes it, based on
-some statistics, it returns whatever word it thinks comes next.
+some statistics, it returns whatever word it thinks should come next.
 
 Regardless, it is still fascinating to think that such a seemingly simple concept
 can produce unbelieveable results.
@@ -183,6 +197,8 @@ they just apply different strategies to make it work.
 
 ## References
 
-- "Attention Is All You Need" paper: https://arxiv.org/abs/1706.03762
-- "Attention in transformers, step-by-step" by 3blue1brown: https://www.3blue1brown.com/lessons/attention
-- The Illustrated Transformer by Jay Alammar: https://jalammar.github.io/illustrated-transformer/
+1. "Attention Is All You Need" paper: https://arxiv.org/abs/1706.03762
+
+2. "Attention in transformers, step-by-step" by 3blue1brown: https://www.3blue1brown.com/lessons/attention
+
+3. The Illustrated Transformer by Jay Alammar: https://jalammar.github.io/illustrated-transformer/
