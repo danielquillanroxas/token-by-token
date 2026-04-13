@@ -1,6 +1,6 @@
 ---
 title: "Learning to Speak: An Introduction to Traditional TTS (Text-to-Speech) Synthesis Techniques"
-date: "2026-04-05"
+date: "2026-04-13"
 author: "D. Roxas"
 description: "An introduction to Traditional (Non-Neural) Text-to-Speech (TTS) Synthesis"
 tags: ["TTS", "text-to-speech", "from-scratch", "NLP"]
@@ -8,10 +8,11 @@ tags: ["TTS", "text-to-speech", "from-scratch", "NLP"]
 
 ## Text-to-Speech
 
-While many of today's TTS systems use neural models, the field started out with rules-based techniques. These technologies built the foundations for the Neural TTS systems used today. In this article, we explore the traditional TTS techniques, specifically: 
-- **Concatenative Synthesis**
-- **Formant Synthesis**
-- **Statistical ...**
+While many of today's TTS systems use neural models, the field started out with rules-based techniques. These technologies built the foundations for the Neural TTS systems used today. In this article, we explore the traditional TTS techniques architecture used in : 
+- **Concatenative Synthesis**,
+- **Formant Synthesis**,
+- **Statistical Parametric Speech Synthesis** (SPSS),
+- etc.
 
 Text-to-Speech synthesis or also known as Speech Synthesis is the process of generating human speech.
 
@@ -21,7 +22,14 @@ The reverse process is called **speech recognition**
 
 What has been mostly used for TTS systems and what has been usually done before the advent of Neural TTS 
 
-A typical TTS system cosists of two basic processing modules: **text analysis module** and **speech synthesis module**.
+A typical TTS system cosists of two basic processing modules: 
+
+1. **text analysis module** 
+2. **speech synthesis module**
+
+It is importnant to note that different sources divide the sections differently. For example, others separate *Prosody prediction module* and *Acoustic model module*. 
+
+In this post, we treat them as subcomponents of the same module - **speech synthesis module**.
 
 ### Text analysis Module
 
@@ -29,10 +37,19 @@ Text Analysis Module is a TTS System's first module. This is where the raw text 
 
 This module is responsible for converting the incoming text (raw text) into a linguistic representation. This stage is important for the standarization of linguistic features of a text. 
 
-In particular, this module has the following functions:
+In particular, this module has the following function:
 
 1. **Text Normalization and Preprocessing**:
-    For the speech/waveform synthesis module to be able to produce pronunciations and speech from the text input, the text analysis module should standardize the texts and any possible ambiguities of the inout text. As an example, words of foreign origin or proper names with irregular pronunciations
+    For the speech/waveform synthesis module to be able to produce pronunciations and speech from the text input, the text analysis module should standardize the texts and any possible ambiguities of the inout text. For example, words of foreign origin or proper names with irregular pronunciations. 
+
+    It handles numbers, dates, abbreviations, and other ambiguities. To give a real example, *'1500 sq. ft.'*, without this module, would be pronounced as *'one five zero zero sq ft'*, instead of the correct and understable version which would be *'one-hundred-fifty square feet'*. 
+
+    With the example given above, I hope it is clear how important text normalization and preprocessing is. It basically creates a mapping for irregular or unpredictable pronunciations in the 'vocabulary'.
+2. 
 
 ## References
-shfshs
+1. https://speechprocessingbook.aalto.fi/Speech_Synthesis.html
+2.  https://zilliz.com/ai-faq/how-does-a-text-analysis-module-work-in-tts
+3. https://www.sciencedirect.com/topics/computer-science/speech-synthesis-system
+4. http://research.spa.aalto.fi/publications/theses/lemmetty_mst/chap5.html
+5. https://apxml.com/courses/speech-recognition-synthesis-asr-tts/chapter-1-modern-speech-processing-foundations/tts-system-components
