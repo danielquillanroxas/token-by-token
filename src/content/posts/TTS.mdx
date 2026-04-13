@@ -1,10 +1,13 @@
 ---
-title: "Learning to Speak: An Introduction to Traditional TTS (Text-to-Speech) Synthesis Techniques"
+title: "Learning to Speak: How TTS Reads Texts"
 date: "2026-04-13"
 author: "D. Roxas"
-description: "An introduction to Traditional (Non-Neural) Text-to-Speech (TTS) Synthesis"
-tags: ["TTS", "text-to-speech", "from-scratch", "NLP"]
+description: "An introduction to Text Analysis (for TTS Systems)"
+tags: ["TTS", "text-to-speech", "NLP"]
 ---
+
+import ttsImage from '../assets/images/TTS/TTS.png';
+
 
 ## Text-to-Speech
 
@@ -29,11 +32,11 @@ A typical TTS system cosists of two basic processing modules [1]:
 
 It is important to note that different sources divide the sections differently. For example, others separate *Prosody prediction module* and *Acoustic model module* [3]. 
 
-In this post, we treat them as subcomponents of the same module - **speech synthesis module**.
+In this post, we treat prosody prediction as a subcomponent of the text analysis module.
 
 ### Text analysis Module
 
-Text Analysis Module is a TTS System's first module. This is where the raw text input goes for the speech (also called _waveform_) synthesis to process.
+Text Analysis Module is a TTS System's first module. This is where the raw text input goes for the speech (also called *waveform*) synthesis to process.
 
 This module is responsible for converting the incoming text (raw text) into a linguistic representation. This stage is important for the standarization of linguistic features of a text.
 
@@ -71,12 +74,26 @@ In particular, this module has the following function:
 The output is a sequence of phonemes with all the linguistic and prosodic information gathered from all the previous *sub*modules. This includes the POS tags, prosody predictions, and phonemes of standardized words. 
 
 
-### Acoustic Model Module
-As mentioned earlier in the text, some sources divide this module into ***the acoustic feature generation module*** and the ***waveform generation module*** [5].
+### Waveform / Speech Synthesis Module
 
-In this guide, however, we treat them as one module. 
+After the text has beeen processed and normalized, the Waveform Module then produces speech based on the information from the previous module and its submodules. 
 
-This module has multiple components: ***Duration Modeling***, ***Acoustic Feature Prediction***, and ***Waveform Generation***
+The aim of this module is to generate speech that resembles natural speech, free of noise and is highly intelligible.
+
+The popular speech synthesis techniques are:
+* Concatenative Synthesis 
+* Formant Synthesis
+* Statistical Parametric Speech Synthesis 
+* Neural Speech Synthesis
+
+Each of these techniques have different components and architecture that would be too long for a single article to cover.
+
+<figure>
+    <img src={ttsImage.src} alt="My Image" width="700" style={{ display: "block", margin: "0 auto" }} />
+    <figcaption style={{ fontSize: "0.85em", color: "gray", marginTop: "0.5em",  textAlign: "center" }}>
+    Figure 1: A typical TTS system architecture
+    </figcaption>
+</figure>
 
 
 
@@ -89,3 +106,4 @@ This module has multiple components: ***Duration Modeling***, ***Acoustic Featur
 6. https://en.wikipedia.org/wiki/Grapheme
 7. https://en.wikipedia.org/wiki/Phoneme 
 8. https://en.wikipedia.org/wiki/Prosody_(linguistics) 
+9. https://www.politesi.polimi.it/retrieve/a0ad5454-4e82-4041-a757-5660d683016e/Executive_Summary_Duration_Modelling_for_Expressive_TTS.pdf
