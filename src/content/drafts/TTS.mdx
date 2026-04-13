@@ -22,12 +22,12 @@ The reverse process is called **speech recognition**
 
 What has been mostly used for TTS systems and what has been usually done before the advent of Neural TTS 
 
-A typical TTS system cosists of two basic processing modules: 
+A typical TTS system cosists of two basic processing modules [1]: 
 
 1. **text analysis module** 
 2. **speech synthesis module**
 
-It is importnant to note that different sources divide the sections differently. For example, others separate *Prosody prediction module* and *Acoustic model module*. 
+It is important to note that different sources divide the sections differently. For example, others separate *Prosody prediction module* and *Acoustic model module* [3]. 
 
 In this post, we treat them as subcomponents of the same module - **speech synthesis module**.
 
@@ -40,12 +40,45 @@ This module is responsible for converting the incoming text (raw text) into a li
 In particular, this module has the following function:
 
 1. **Text Normalization and Preprocessing**:
-    For the speech/waveform synthesis module to be able to produce pronunciations and speech from the text input, the text analysis module should standardize the texts and any possible ambiguities of the inout text. For example, words of foreign origin or proper names with irregular pronunciations. 
+    For the speech/waveform synthesis module to be able to produce pronunciations and speech from the text input, the text analysis module should standardize the texts and any possible ambiguities of the inout text. For example, words of foreign origin or proper names with irregular pronunciations [1]. 
 
     It handles numbers, dates, abbreviations, and other ambiguities. To give a real example, *'1500 sq. ft.'*, without this module, would be pronounced as *'one five zero zero sq ft'*, instead of the correct and understable version which would be *'one-hundred-fifty square feet'*. 
 
     With the example given above, I hope it is clear how important text normalization and preprocessing is. It basically creates a mapping for irregular or unpredictable pronunciations in the 'vocabulary'.
-2. 
+2. **Linguistic Analysis**:
+    The input of this module is the processed text from the text preprocessing and normalization.
+
+    This module, or should I say submodule, is responsible for extracting features relevant for pronunciation and prosody [5].
+
+    * **Grapheme-to-Phoneme (*G2P*) Conversion**: This part of liguistic analysis is concerned with the correct pronunciation of words, hence the name. For clarity, **graphemes** are the smallest units of a writing system [6]. In English, and many other languages that uses the Latin alphabet, this could be as small as a letter or a group of letters that correspond to a sound, or more accurately, a **phoneme** [7]. For example, the word *'should'* would have the graphemes: *sh*, *oul*, and *d*, since each of them corresponds to different sounds, or phonemes.
+        G2P conversion can be achieved using the following [5]:
+        * **Pronunciation Dictionaries (Lexicons)**
+        * **Rule-Based Systems**
+        * **Machine Learning Models**
+
+    * **Part-of-Speech (POS) Tagging**: While used for sentence or text understanding, POS is also helpful in determining the appropriate pronunciations of words spelled the same but are of different parts of speech. 
+
+    For example, *'content'* could mean either the adjective *content* (pronounced conTENT), meaning satisified, or the noun *content* (pronounced CONtent), meaning material within or part of something.
+
+    We, humans, could easily see the difference between these two words given the surrounding texts and the general context. TTS systems would need to be able to distinguish between the two using tagging to use the right pronunciation. 
+
+    * **Prosody Prediction**: **Prosody** encompasses all the elements of language that has to do with its rhythm, and stress, which would not be inferred from the text/words alone [8]. 
+
+    The components of prosody are: *intonation*, *stress*, *rhythm*, and, *tempo or pace*.
+
+    The prosody prediction module receives the text from the two previous modules and predicts the appropriate pauses, breaks, and emphasis for a more *natural*-sounding speech. 
+
+The output is a sequence of phonemes with all the linguistic and prosodic information gathered from all the previous *sub*modules. This includes the POS tags, prosody predictions, and phonemes of standardized words. 
+
+
+### Acoustic Model Module
+As mentioned earlier in the text, some sources divide this module into ***the acoustic feature generation module*** and the ***waveform generation module*** [5].
+
+In this guide, however, we treat them as one module. 
+
+This module has multiple components: ***Duration Modeling***, ***Acoustic Feature Prediction***, and ***Waveform Generation***
+
+
 
 ## References
 1. https://speechprocessingbook.aalto.fi/Speech_Synthesis.html
@@ -53,3 +86,6 @@ In particular, this module has the following function:
 3. https://www.sciencedirect.com/topics/computer-science/speech-synthesis-system
 4. http://research.spa.aalto.fi/publications/theses/lemmetty_mst/chap5.html
 5. https://apxml.com/courses/speech-recognition-synthesis-asr-tts/chapter-1-modern-speech-processing-foundations/tts-system-components
+6. https://en.wikipedia.org/wiki/Grapheme
+7. https://en.wikipedia.org/wiki/Phoneme 
+8. https://en.wikipedia.org/wiki/Prosody_(linguistics) 
