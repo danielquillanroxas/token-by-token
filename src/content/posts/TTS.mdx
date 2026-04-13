@@ -7,14 +7,14 @@ tags: ["TTS", "text-to-speech", "NLP"]
 ---
 
 import ttsImage from '../assets/images/TTS/TTS.png';
-
 import ttsImage2 from '../assets/images/TTS/TTS_System.png';
+import ttsImage3 from '../assets/images/TTS/part_of_speech_tagging.webp';
 
 
 ## Text-to-Speech
 
 <figure>
-    <img src={ttsImage.src} alt="My Image" width="700" style={{ display: "block", margin: "0 auto" }} />
+    <img src={ttsImage2.src} alt="My Image" width="700" style={{ display: "block", margin: "0 auto" }} />
     <figcaption style={{ fontSize: "0.85em", color: "gray", marginTop: "0.5em",  textAlign: "center" }}>
     Figure 1: A typical TTS system architecture from [10]
     </figcaption>
@@ -75,6 +75,13 @@ In particular, this module has the following function:
 
     We, humans, could easily see the difference between these two words given the surrounding texts and the general context. TTS systems would need to be able to distinguish between the two using tagging to use the right pronunciation. 
 
+<figure>
+    <img src={ttsImage3.src} alt="My Image" width="700" style={{ display: "block", margin: "0 auto" }} />
+    <figcaption style={{ fontSize: "0.85em", color: "gray", marginTop: "0.5em",  textAlign: "center" }}>
+    Figure 1: A visualization of Part-of-Speech Tagging from [11]
+    </figcaption>
+</figure>
+
     * **Prosody Prediction**: **Prosody** encompasses all the elements of language that has to do with its rhythm, and stress, which would not be inferred from the text/words alone [8]. 
 
     The components of prosody are: *intonation*, *stress*, *rhythm*, and, *tempo or pace*.
@@ -118,3 +125,4 @@ Each of these techniques have different components and architecture that would b
 8. https://en.wikipedia.org/wiki/Prosody_(linguistics) 
 9. https://www.politesi.polimi.it/retrieve/a0ad5454-4e82-4041-a757-5660d683016e/Executive_Summary_Duration_Modelling_for_Expressive_TTS.pdf
 10. https://en.wikipedia.org/wiki/Speech_synthesis
+11. https://www.geeksforgeeks.org/nlp/nlp-part-of-speech-default-tagging/
