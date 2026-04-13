@@ -14,6 +14,10 @@ tags:
   ]
 ---
 
+import decoder_img from "../assets/images/transformers/encoder_decoder_demo.png";
+import transformer_img from "../assets/images/transformers/transformer_block.webp";
+import nn_img from "../assets/images/neural_networks/simple_nn_ex.png";
+
 # Introduction
 
 The transformer model was first introduced in a 2017 paper titled "Attention Is All You Need"
@@ -28,8 +32,7 @@ mathematical understanding of the underlying components of the transformer model
 rather my goal is to give you an overview of what truly makes the transformer architecture
 amazing, while providing additional resources for anyone interested in learning further.
 
-Although not necessary but it can be useful to be briefly aware of the following
-terminology:
+Some useful terminology to know:
 
 - **Large Language Models (LLMs) :** think of these as the "brain" behind the AI, it is
   where all the learning and computations is done before producing a result. Under the
@@ -52,18 +55,30 @@ terminology:
   its signal.
 
 - **LLM Vocabulary:** this is a predefined "vocabulary" of words that contains all
-  the words the LLM will be trained on. For example: GPT3 contains a 100,261 token
-  vocabulary. This means that GPT 3 could recognise 100,261 words, similar to how
+  the words the LLM will be trained on. For example: GPT-3 contains a 100,261 token
+  vocabulary. This means that GPT-3 could recognise different 100,261 words, similar to how
   language vocabulary works.
 
   <br />
 
-<img
-  src="../assets/images/transformers/transformer_block.webp"
-  alt="My Image"
-  width="300"
-  style="display: block; margin: 0 auto;"
-/>
+<figure>
+  <img
+    src={transformer_img.src}
+    alt="Image of transformer block"
+    width="400"
+    style={{ display: "block", margin: "0 auto" }}
+  />
+  <figcaption
+    style={{
+      fontSize: "0.85em",
+      color: "gray",
+      marginTop: "0.5em",
+      textAlign: "center",
+    }}
+  >
+    Figure 1: Transformer block from "Attention Is All You Need".
+  </figcaption>
+</figure>
 
 <br />
 
@@ -78,6 +93,8 @@ The transformer model consists of the following main components:
 - Multi-Head Attention
 - Layer Normalization
 - Decoder
+
+<br />
 
 ## Encoder
 
@@ -104,12 +121,26 @@ to every neuron at the forwarding layer:
 3. **Output layer:** produces the final output — a probability score for every word
    in the predefined vocabulary.
 
-<img
-  src="../assets/images/neural_networks/simple_nn_ex.png"
-  alt="Neural Network"
-  width="500"
-  style="display: block; margin: 0 auto;"
-/>
+<br />
+
+<figure>
+  <img
+    src={nn_img.src}
+    alt="Simple neural network"
+    width="550"
+    style={{ display: "block", margin: "0 auto" }}
+  />
+  <figcaption
+    style={{
+      fontSize: "0.85em",
+      color: "gray",
+      marginTop: "0.5em",
+      textAlign: "center",
+    }}
+  >
+    Figure 2: Simple neural network.
+  </figcaption>
+</figure>
 
 Each layer of the neural network "fires" to the proceeding layers and so on, until
 the last layer comes out with an output. The word with the highest score will be picked,
@@ -134,7 +165,7 @@ This helps us avoid the problem of overly large/small numbers.
 
 Is the core revolutionary component of the transformer model, the attention block
 itself deserves it's own article, however we will explain the gist of what the
-attention mechnism is and what it does.
+attention mechnism is and what it does [2].
 
 _"Determines how relevant a word is in a sentence, relative to the other words in that sentence."_
 
@@ -161,14 +192,24 @@ Somewhat similar to the encoder, the decoder uses the encoder's vector represent
 then **autoregressively** generates one word (token) at a time.
 
 <br />
-<img
-  src="../assets/images/transformers/encoder_decoder_demo.png"
-  alt="Encoder-decoder demonstration"
-  width="700"
-  style="display: block; margin: 0 auto;"
-/>
-
-<br />
+<figure>
+  <img
+    src={decoder_img.src}
+    alt="My Image"
+    width="700"
+    style={{ display: "block", margin: "0 auto" }}
+  />
+  <figcaption
+    style={{
+      fontSize: "0.85em",
+      color: "gray",
+      marginTop: "0.5em",
+      textAlign: "center",
+    }}
+  >
+    Figure 3: Simple demonstration of encoder and decoders.
+  </figcaption>
+</figure>
 
 The image shows an example of the encoder taking in some user input "_Are you free tomorrow?_",
 and purely through the mechanism of the transformer block and neural network. The LLM
@@ -201,4 +242,4 @@ they just apply different strategies to make it work.
 
 2. "Attention in transformers, step-by-step" by 3blue1brown: https://www.3blue1brown.com/lessons/attention
 
-3. The Illustrated Transformer by Jay Alammar: https://jalammar.github.io/illustrated-transformer/
+3. Further Reading: The Illustrated Transformer by Jay Alammar: https://jalammar.github.io/illustrated-transformer/
