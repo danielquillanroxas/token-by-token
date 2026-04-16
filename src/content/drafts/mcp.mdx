@@ -3,13 +3,48 @@ title: "Model Context Protocols"
 date: ""
 author: "M. Fadel"
 description: "Diving into what MCPs really are and their applications."
-tags: ["MCP", "dsadadssdadsaadsadadad", ""]
+tags: ["MCP", "anthropic", ""]
 ---
+
+import mcp_gif from "../assets/gifs/mcp_workflow.gif";
+import mcp_simple_diagram from "../assets/images/mcp/mcp-simple-diagram.avif";
 
 # Introduction
 
-In late 2024, the MCP has taken the internet by storm and quickly gained popularity inside the AI space. But what is it really and what was the hype all about?
+In late 2024, Anthropic released an article introducing the MCP [1], since then MCP has taken the internet by storm and quickly gained popularity inside the AI space. But what is it really and what was the hype all about?
 
 ### Core Idea
 
 MCP stands for Model Context Protocol, that's all it is, a protocol similar to REST when calling APIs. In the age of AI, having methods to call external APIs from your LLM application can be tedious work since all other external services may have different API Schemas and in order to use them all, you'll need to build custom integration code or adapters for each service. MCP handles this issue and provides a standardized way of providing additional "context" or calling tools to all LLM applications.
+
+<br />
+
+<figure>
+  <img
+    src={mcp_simple_diagram.src}
+    alt="Gif of MCP workflow"
+    width="400"
+    style={{ display: "block", margin: "0 auto" }}
+  />
+  <figcaption
+    style={{
+      fontSize: "0.85em",
+      color: "gray",
+      marginTop: "0.5em",
+      textAlign: "center",
+    }}
+  >
+    Figure 1: ".
+  </figcaption>
+</figure>
+
+### Hosts and Clients
+
+### MCP Servers
+
+## Implmentation
+
+## References
+
+1. Introduction of the MCP: https://www.anthropic.com/news/model-context-protocol.
+2. Model Context Protocol Official Website: https://modelcontextprotocol.io/docs/getting-started/intro.
