@@ -1,12 +1,14 @@
 ---
-title: "Learning To Speak: An Introduction too Neural TTS Models"
-date: ""
+title: "Learning To Speak: Key Components of a Neural TTS"
+date: "2026-04-18"
 author: "D. Roxas"
-description: "---"
+description: "A brief introduction Neural TTS and its components"
 tags: ["TTS", "Deep Learning", "NLP"]
 ---
 
 import ttsImage from '../assets/images/TTS/neural_tts_overview.png';
+import ttsImage1 from '../assets/images/TTS/Waveforms.svg'
+import ttsImage2 from '../assets/images/TTS/Screenshot 2026-04-18 192455.png'
 
 Generally, a neural TTS has three key components: **a text analysis module**, **an acoustic model**, **and a vocoder**.
 
@@ -17,7 +19,7 @@ The neural TTS process is visualized in the illustration below. As can be seen h
 <figure>
     <img src={ttsImage.src} alt="My Image" width="700" style={{ display: "block", margin: "0 auto" }} />
     <figcaption style={{ fontSize: "0.85em", color: "gray", marginTop: "0.5em",  textAlign: "center" }}>
-    Figure 1: A typical neural TTS system architecture from [1]
+    Figure 1: The data flows from text to waveform from [1]
     </figcaption>
 </figure>
 
@@ -42,6 +44,38 @@ To have the full picture of the mechanism of a neural TTS, it is important to un
 
     So linguistic features are the **output** of the text analysis module and the **input** of the acoustic model(s). 
 
+* **Acoustic Features** - In neural-based TTS models, mel-spectograms are usually used as acoustic features and are conversted to waveforms (speech) using neural-based vocoders.
+
+* **Waveform** - this is the main output of a TTS system. Also known as speech. 
+
+<figure>
+    <img src={ttsImage1.src} alt="My Image" width="700" style={{ display: "block", margin: "0 auto" }} />
+    <figcaption style={{ fontSize: "0.85em", color: "gray", marginTop: "0.5em",  textAlign: "center" }}>
+    Figure 1: An illustration of a waveform from [2]
+    </figcaption>
+</figure>
+
+Even among neural-based TTS systems, there can be different data flows from text to waveform:
+
+1. `character` -> `linguistic features` -> `acoustic features` -> `waveform`
+2. `character` -> `phoneme` -> `avoustic features` -> `waveform`
+3. `character` -> `linguistic features` -> `waveform`
+4. `character` -> `phoneme` -> `acoustic features` -> `waveform`
+5. `character` -> `phoneme` -> `waveform` 
+6. `character` -> `waveform`
+
+<figure>
+    <img src={ttsImage2.src} alt="My Image" width="700" style={{ display: "block", margin: "0 auto" }} />
+    <figcaption style={{ fontSize: "0.85em", color: "gray", marginTop: "0.5em",  textAlign: "center" }}>
+    Figure 1: Different neural TTS system architecture from [1]
+    </figcaption>
+</figure>
+
+In other posts, **Text Analysis Modules**, **Acoustic Models**, and **Vocoders** will be discussed in much greater depth. 
+
+
+
+
 
 
 
@@ -49,3 +83,4 @@ To have the full picture of the mechanism of a neural TTS, it is important to un
 
 ## References
  1. https://doi.org/10.1007/978-981-99-0827-1
+ 2. https://en.wikipedia.org/wiki/Waveform 
