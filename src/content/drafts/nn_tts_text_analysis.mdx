@@ -6,6 +6,32 @@ description: "A deep dive into the text analysis module of (neural-based) TTS sy
 tags: ["TTS", "Deep Learning", "NLP"]
 ---
 
+import ttsImage1 from '../assets/images/TTS/text_processing_1.png';
+
+As the name suggests, TTS transforms text to speech or waveforms. This, however, would not be possible without first processing the text. 
+
+Text contains information or features that help the Vocoder generate the correct sounds, tone, pitch, etc. 
+
+Text analyses consist of 3 main components:
+1. **Text processing**: this step consists of normalizing texts from documents (e.g., defining acronyms, transforming numbers into text form), linguistic analyses.
+2. **Phonetic analyses**: this part takes the normalized and processed text as input and converts it to phonetic symbols (e.g., dog to `/dôg, dŏg/`).
+3. **Prosodic analyses**: From the output of the previous step (phonetic analyses), this component analyses the prosodic features of the text (e.g., pitch, duration, loudness).
+
+<figure>
+    <img src={ttsImage1.src} alt="My Image" width="700" style={{ display: "block", margin: "0 auto" }} />
+    <figcaption style={{ fontSize: "0.85em", color: "gray", marginTop: "0.5em",  textAlign: "center" }}>
+    Figure 1: Components of text analyses from [1]
+    </figcaption>
+</figure>
+
+
+## 1. Text Processing
+The main function of this component is to extract, simplify, normalize, and analyze text to enable the following components (phonetic analyses and prosodic analyses) to work. 
+
+Text processing has 3 subcomponents: **document structure detection**, **text normalization**,  and **linguistic analysis**. 
+
+### 1.1. Document Structure Detection
+In most cases, the usual input of TTS systems are not single sentences, but documents (e.g., book, guide, dialog). 
 
 ## References
 1. https://doi.org/10.1007/978-981-99-0827-1
